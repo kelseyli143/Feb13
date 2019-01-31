@@ -1,63 +1,61 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-#Receives input from the user from the console
-
-#Console input can be received with code such as follows:
-#x = input("Enter number: ")
-#Note that x will be a string and needs to be converted to a float.
-#Weight input must be in pounds
-#Height input must be in inches
-# BMI	Weight Status
-# Below 18.5	Underweight
-# 18.5 – 24.9	Normal
-# 25.0 – 29.9	Overweight
-# 30.0 and Above	Obese
-# BMI = (Weight in Pounds / (Height in inches) x (Height in inches)) x 703
-#Program must output to the console the calculated BMI.
-
-#Console output can be achieved by code such as: print("The number entered was {}".format(x))
-#Program must output whether the calculated BMI represents underweight, normal weight, overweight, or obese.
-
-#Extra credit: give the user the option to enter weight in kilograms and height in meters.
+# Kelsey Li
+# BME547
+# BMI Calculator
 
 
-# In[3]:
+# main function that calls all other functions
+def main():
+    units = BMI_units()
+    
+    BMI = BMI_calc(units)
+    
+    BMI_status(BMI)
+    
+# first allow user to choose their unit system
+def BMI_units():
+    units = input("Would you like to use imperial or metric units? Enter either imperial or metric: ")
+    return units #saves units as the results of this function
 
+def BMI_calc(units):
+    if units == "imperial":
+        height_str = input("Enter height in inches: ")
+        weight_str = input("Enter weight in pounds: ")
+        
+        # float converts the string inputs to floats for calculation
+        height = float(height_str)
+        weight = float(weight_str)
+        
+        #BMI calculation with conversion factor for imperial units
+        BMI = (weight/height**2)*703
+     
+    if units == "metric":
+        height_str = input("Enter height in meters: ")
+        weight_str = input("Enter weight in kilograms: ")
+        
+        # float converts the string inputs to floats for calculation
+        height = float(height_str)
+        weight = float(weight_str)
+        
+        # BMI calculation for metric units
+        BMI = weight/height**2
+    
+    print("The corresponding BMI is {}.".format(BMI))  
+   
+    # saves BMI as output of BMI calculation
+    return BMI
 
-height_str = input("Enter height in inches:")
-weight_str = input("Enter weight in pounds:")
-height = float(height_str)
-weight = float(weight_str)
-# %whos
-
-
-# In[4]:
-
-
-BMI = (weight/height**2)*703
-print("The corresponding BMI is",BMI)
-
-
-# In[5]:
-
-
-if BMI<18.5:
-    status = 'underweight'
-elif BMI>=18.5 and BMI<=24.9:
-    status = 'normal weight'
-elif BMI>=25 and BMI<=29.9:
-    status = 'overweight'
-else:
-    status = 'obese'
-print("This BME is categorized as",status)
-
-
-# In[ ]:
-
-
-
-
+#if statement depending on BMI value to determine BMI status
+def BMI_status(BMI):
+    if BMI<18.5:
+        status = 'underweight'
+    elif BMI>=18.5 and BMI<=24.9:
+        status = 'normal weight'
+    elif BMI>=25 and BMI<=29.9:
+        status = 'overweight'
+    else:
+        status = 'obese'
+    print("This BME is categorized as {}.".format(status))
+    
+if __name__ == "__main__": 
+# double underscore means it's an internal Python variable
+    main()
