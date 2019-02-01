@@ -8,3 +8,8 @@
 3. The calculator will then output:
 * the numerical BMI that corresponds with the given height and weight 
 * the BMI status (underweight, normal weight, overweight, or obese) depending on the calculated BMI
+
+
+**Notes about the BMI calculator assignment:**
+* I did the whole assignment in jupiter notebook, then converted to a .py script. 
+* I did the assignment before class on Wednesday, so I didn't understand how to overcome issues with merging branches. I had a number of commits trying to change the scripts so that they would be able to merge automatically, which I know is not the correct way to do this.
